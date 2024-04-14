@@ -14,3 +14,10 @@ after_success:
   - docker build -t yatinqss/multi-server ./server
   - docker build -t yatinqss/multi-worker ./worker
   - docker build -t yatinqss/multi-nginx ./nginx
+  # docker login
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # push docker images
+  - docker push yatinqss/multi-client
+  - docker push yatinqss/multi-server
+  - docker push yatinqss/multi-nginx
+  - docker push yatinqss/multi-worker
